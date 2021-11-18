@@ -6,12 +6,12 @@ import java.io.IOException;
 
 public class Main {
     public static Items [] items = new Items[321];
-    public static Items [] optimalItems;
-    
+
     public static void main(String [] args){
 
         loadItems("items.csv");
         printItems();
+        KnapSack();
     }
 
     public static void loadItems(String fileName){
@@ -46,7 +46,7 @@ public class Main {
 
  */
 
-    static int KnapSack(int W, int cost[], int val[], int n) {
+    static int KnapSack() {
         /*
         int i, w;
         int[][] K = new int [n+1][W+1];
@@ -63,6 +63,8 @@ public class Main {
         return K[n][W];
 
          */
+
+
         return 0;
     }
 }
