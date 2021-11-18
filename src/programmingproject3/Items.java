@@ -1,6 +1,5 @@
 package programmingproject3;
 
-
 public class Items {
     String name;
     int price;

@@ -3,56 +3,51 @@ package programmingproject3;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Scanner;
 
 public class Main {
-
+    public static Items [] items = new Items[321];
+    public static Items [] optimalItems;
+    
     public static void main(String [] args){
 
-        //loadItems("items.csv");
-        Scanner myObj = new Scanner(System.in);
-        System.out.println("Enter the no of items:");
-
-        int n = myObj.nextInt();
-        int val[] = new int[n + 1];
-        int cost[] = new int[n + 1];
-
-        System.out.println("Enter the value of items:");
-        for(int i = 0;i < n; i++)
-            val[i] = myObj.nextInt();
-        System.out.println("Enter the cost of items:");
-        for(int i = 0;i < n; i++)
-            cost[i] = myObj.nextInt();
-        int W = 100;
-        System.out.println("the max value we can get is");
-        System.out.println(KnapSack(W, cost, val, n));
-
+        loadItems("items.csv");
+        printItems();
     }
-/*
+
     public static void loadItems(String fileName){
+        int i =0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line1;
             br.readLine();
             while( (line1 = br.readLine()) != null ) { //loops through a .csv file until it reaches a null line
                 String [] array = line1.split(",");
-                Items s = new Items (
+                items[i] = new Items (
                         array[0],
                         Integer.parseInt(array[1]),
                         Integer.parseInt(array[2])
                 ); //creates a new store object
-                //FIXME add items to array or arraylist here
+                i++;
             }
         } catch (IOException e) { // if file is not found
             e.printStackTrace();
         }
     }
- */
+    
+    public static void printItems(){
+        for (Items item : items) {
+            System.out.println(item.getName() + ", " + item.getPrice() + ", " + item.getValue());
+        }
+    }
+/*
     static int max(int a,int b) {
         return Math.max(a, b);
     }
 
+ */
+
     static int KnapSack(int W, int cost[], int val[], int n) {
+        /*
         int i, w;
         int[][] K = new int [n+1][W+1];
 
@@ -66,6 +61,8 @@ public class Main {
             }
         }
         return K[n][W];
-    }
 
+         */
+        return 0;
+    }
 }
