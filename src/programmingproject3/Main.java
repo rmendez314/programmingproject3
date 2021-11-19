@@ -6,12 +6,14 @@ import java.io.IOException;
 
 public class Main {
     public static Items [] items = new Items[321];
+    public static int [] prices = new int[321];
+    public static int [] values = new int[321];
 
     public static void main(String [] args){
 
         loadItems("items.csv");
         printItems();
-        KnapSack();
+        knapsack();
     }
 
     public static void loadItems(String fileName){
@@ -26,7 +28,9 @@ public class Main {
                         array[0],
                         Integer.parseInt(array[1]),
                         Integer.parseInt(array[2])
-                ); //creates a new store object
+                );//creates a new items object
+                prices[i] = Integer.parseInt(array[1]);
+                values[i] = Integer.parseInt(array[2]);
                 i++;
             }
         } catch (IOException e) { // if file is not found
@@ -39,32 +43,28 @@ public class Main {
             System.out.println(item.getName() + ", " + item.getPrice() + ", " + item.getValue());
         }
     }
-/*
-    static int max(int a,int b) {
-        return Math.max(a, b);
-    }
 
- */
+    public static int knapsack(int[] prices, int[] values, int n, int W) {
+        if (n <= 0 || W <= 0) {
+            return 0;
+        }
 
-    static int KnapSack() {
-        /*
-        int i, w;
-        int[][] K = new int [n+1][W+1];
+        int[][] m = new int[n + 1][W + 1];
+        for (int j = 0; j <= W; j++) {
+            m[0][j] = 0;
+        }
 
-        for(i = 0; i < n; i++){
-            for(w = 0; w <= W; w++){
-                if(i == 0 ||w == 0)
-                    K[i][w] = 0;
-                else if(cost[i - 1] <= w)
-                    K[i][w] = max(val[i - 1] + K[i - 1][w - cost[i - 1]], K[i - 1][w]);
-                else K[i][w]=K[i - 1][w];
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= W; j++) {
+                if (prices[i - 1] > j) {
+                    m[i][j] = m[i - 1][j];
+                } else {
+                    m[i][j] = Math.max(
+                            m[i - 1][j],
+                            m[i - 1][j - prices[i - 1]] + values[i - 1]);
+                }
             }
         }
-        return K[n][W];
-
-         */
-
-
-        return 0;
+        return m[n][W];
     }
 }
